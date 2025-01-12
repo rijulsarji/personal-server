@@ -9,23 +9,16 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
-const dotenv = require("dotenv").config({ path: "./.env" });
 app.listen(9000, () => {
   console.log("Server running on 9000");
 });
 
 const openAIServiceAdapter = new OpenAIAdapter({ model: "gpt-4o-mini" });
-const geminiServiceAdapter = new GoogleGenerativeAIAdapter({
-  model: "gemini-1.5-flash",
-});
-const anthropicServiceAdapter = new AnthropicAdapter({
-  model: "claude-3-5-sonnet-20241022",
-});
 
-app.use("/form-response", async (req, res, next) => {
+app.use(express.json());
+app.use("/form-response", async (req, res) => {
   console.log("req.body", req);
-  console.log("Timestamp:", JSON.parse(req.body));
+  console.log("Timestamp:", req.body);
   return res.send("Hello world");
 });
 
