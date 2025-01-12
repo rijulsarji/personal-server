@@ -9,6 +9,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 const dotenv = require("dotenv").config({ path: "./.env" });
 app.listen(9000, () => {
   console.log("Server running on 9000");
@@ -22,14 +23,9 @@ const anthropicServiceAdapter = new AnthropicAdapter({
   model: "claude-3-5-sonnet-20241022",
 });
 
-app.use("/form-response", async (req, res, next) => {
+app.use("/form-response", bodyParser.json(), async (req, res, next) => {
   console.log("req.body", req);
-  const body = req.body;
-  console.log("body", body);
-  console.log("responseItem", body[0].getResponse());
-  body.forEach((item) => {
-    console.log("item", item.getItem(), item.getResponse());
-  });
+  console.log("Timestamp:", req.body);
   return res.send("Hello world");
 });
 
