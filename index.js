@@ -23,14 +23,14 @@ const anthropicServiceAdapter = new AnthropicAdapter({
 });
 
 app.use("/form-response", async (req, res, next) => {
-    console.log('req.body', req);
-    const body = req.body;
-    console.log('body', body);
-    console.log('responseItem', body[0].getResponse())
-    body.forEach((item) => {
-      console.log('item', item.getItem(), item.getResponse())
-    })
-
+  console.log("req.body", req);
+  const body = req.body;
+  console.log("body", body);
+  console.log("responseItem", body[0].getResponse());
+  body.forEach((item) => {
+    console.log("item", item.getItem(), item.getResponse());
+  });
+  return res.send("Hello world");
 });
 
 app.use("/copilotkit-chat", (req, res, next) => {
