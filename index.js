@@ -23,9 +23,9 @@ const anthropicServiceAdapter = new AnthropicAdapter({
   model: "claude-3-5-sonnet-20241022",
 });
 
-app.use("/form-response", bodyParser.json(), async (req, res, next) => {
+app.use("/form-response", async (req, res, next) => {
   console.log("req.body", req);
-  console.log("Timestamp:", req.body);
+  console.log("Timestamp:", JSON.parse(req.body));
   return res.send("Hello world");
 });
 
