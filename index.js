@@ -9,8 +9,6 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const { google } = require("googleapis");
-const credentials = require("./google-service-user.json");
 const dotenv = require("dotenv").config({ path: "./.env" });
 app.listen(9000, () => {
   console.log("Server running on 9000");
