@@ -25,16 +25,28 @@ app.use("/form-response", async (req, res) => {
   return res.send("Hello world");
 });
 
-app.use("/copilotkit-chat", (req, res, next) => {
+app.use("/copilotkit-chat-claude", (req, res, next) => {
   const runtime = new CopilotRuntime();
   const handler = copilotRuntimeNodeExpressEndpoint({
     runtime,
     serviceAdapter: anthropicServiceAdapter,
-    endpoint: "/copilotkit-chat",
+    endpoint: "/copilotkit-chat-claude",
   });
 
   return handler(req, res, next);
 });
+
+app.use("/copilotkit-chat-gpt", (req, res, next) => {
+  const runtime = new CopilotRuntime();
+  const handler = copilotRuntimeNodeExpressEndpoint({
+    runtime,
+    serviceAdapter: openAIServiceAdapter,
+    endpoint: "/copilotkit-chat-gpt",
+  });
+
+  return handler(req, res, next);
+});
+
 
 app.use("/copilotkit", (req, res, next) => {
   const runtime = new CopilotRuntime();
