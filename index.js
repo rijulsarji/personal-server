@@ -14,6 +14,7 @@ app.listen(9000, () => {
 });
 
 const openAIServiceAdapter = new OpenAIAdapter({ model: "gpt-4o-mini" });
+const openAI4oServiceAdapter = new OpenAIAdapter({ model: "gpt-4o" });
 const anthropicServiceAdapter = new AnthropicAdapter({
   model: "claude-3-5-sonnet-20241022",
 });
@@ -40,7 +41,7 @@ app.use("/copilotkit-chat-gpt", (req, res, next) => {
   const runtime = new CopilotRuntime();
   const handler = copilotRuntimeNodeExpressEndpoint({
     runtime,
-    serviceAdapter: openAIServiceAdapter,
+    serviceAdapter: openAI4oServiceAdapter,
     endpoint: "/copilotkit-chat-gpt",
   });
 
