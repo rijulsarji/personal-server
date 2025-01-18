@@ -2,10 +2,8 @@ const {
   CopilotRuntime,
   copilotRuntimeNodeExpressEndpoint,
   OpenAIAdapter,
-  GoogleGenerativeAIAdapter,
   AnthropicAdapter,
 } = require("@copilotkit/runtime");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
 const express = require("express");
 const app = express();
@@ -47,7 +45,6 @@ app.use("/copilotkit-chat-gpt", (req, res, next) => {
 
   return handler(req, res, next);
 });
-
 
 app.use("/copilotkit", (req, res, next) => {
   const runtime = new CopilotRuntime();
